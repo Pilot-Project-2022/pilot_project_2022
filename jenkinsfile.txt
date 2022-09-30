@@ -2,30 +2,30 @@ node {
 
     stage("Git Clone"){
 
-        git credentialsId: 'GIT_CREDENTIALS', url: 'https://gitlab.com/patelsiddharthnids993/devops_project.git'
+        git credentialsId: 'GIT_CREDENTIALS', url: 'https://github.com/Pilot-Project-2022/pilot_project_2022.git'
     }
 
     stage("Docker build"){
         sh 'docker version'
         sh 'docker build -t test${BUILD_ID} .'
         sh 'docker image list'
-        sh 'docker tag test${BUILD_ID} siddharthgopalpatel/test:latest'
+        sh 'docker tag test${BUILD_ID} pilotproject2022/test:latest'
     }
 
     withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-        sh 'docker login -u siddharthgopalpatel -p $PASSWORD'
+        sh 'docker login -u pilotproject2022 -p $PASSWORD'
     }
 
     stage("Push Image to Docker Hub"){
-        sh 'docker push siddharthgopalpatel/test:latest'
+        sh 'docker push pilotproject2022/test:latest'
     }
 
     stage("SSH Into k8s Server") {
         def remote = [:]
         remote.name = 'master'
-        remote.host = '192.168.1.208'
-        remote.user = 'sidd'
-        remote.password = 'sidd123'
+        remote.host = '172.31.26.52'
+        remote.user = 'ubuntu'
+        remote.password = 'ubuntu'
         remote.allowAnyHosts = true
 
         stage('Removing Application') {

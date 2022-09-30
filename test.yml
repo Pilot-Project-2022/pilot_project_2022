@@ -27,7 +27,7 @@ spec:
         app: mydeploy
     spec:
       containers:
-      - image: siddharthgopalpatel/test:latest
+      - image: nginx
         name: nginx
 ---
 
