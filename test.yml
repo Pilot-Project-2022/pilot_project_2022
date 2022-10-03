@@ -26,7 +26,7 @@ spec:
         app: mydeploy
     spec:
       containers:
-      - image: ubuntu
+      - image: pilotproject2022/test:latest
         name: c1
 ---
 
