@@ -27,8 +27,8 @@ spec:
         app: mydeploy
     spec:
       containers:
-      - image: siddharthgopalpatel/v2:v1
-        name: nginx
+      - image: nginy
+        name: c1
 ---
 
 apiVersion: v1
